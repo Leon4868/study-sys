@@ -1,0 +1,38 @@
+{
+  "name": "study-sys",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "check-types": "turbo run check-types",
+    "dev:web": "turbo run dev -F web",
+    "dev:server": "turbo run dev -F server",
+    "db:push": "turbo run db:push -F @study-sys/db",
+    "db:studio": "turbo run db:studio -F @study-sys/db",
+    "db:generate": "turbo run db:generate -F @study-sys/db",
+    "db:migrate": "turbo run db:migrate -F @study-sys/db",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@study-sys/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@study-sys/config": "workspace:*",
+    "@types/node": "catalog:",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.7",
+    "turbo": "^2.9.16",
+    "typescript": "catalog:"
+  },
+  "lint-staged": {
+    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue,astro,svelte}": ""
+  },
+  "packageManager": "pnpm@11.9.0"
+}

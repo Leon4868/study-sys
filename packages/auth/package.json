@@ -1,0 +1,24 @@
+{
+  "name": "@study-sys/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@study-sys/db": "workspace:*",
+    "@study-sys/env": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@study-sys/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

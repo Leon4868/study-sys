@@ -1,109 +1,198 @@
-# study-sys
+# LearnTrack 个人学习管理系统
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Router, Hono, TRPC, and more.
+一个面向个人用户的轻量级学习管理工具。它帮助你记录每天学了什么、回顾学习历史、统计学习投入，并把零散的学习过程沉淀成清晰的成长档案。
 
-## Features
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6)
+![React](https://img.shields.io/badge/React-19-61dafb)
+![Hono](https://img.shields.io/badge/Hono-API-orange)
+![tRPC](https://img.shields.io/badge/tRPC-TypeSafe-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169e1)
+![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-ef4444)
 
-- **TypeScript** - For type safety and improved developer experience
-- **TanStack Router** - File-based routing with full type safety
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
-- **Hono** - Lightweight, performant server framework
-- **tRPC** - End-to-end type-safe APIs
-- **Node.js** - Runtime environment
-- **Drizzle** - TypeScript-first ORM
-- **PostgreSQL** - Database engine
-- **Authentication** - Better-Auth
-- **Turborepo** - Optimized monorepo build system
-- **Husky** - Git hooks for code quality
-- **PWA** - Progressive Web App support
-- **Tauri** - Build native desktop applications
+## 项目亮点
 
-## Getting Started
+- 学习仪表盘：展示今日记录状态、累计学习天数、累计时长、本周时长和最近记录。
+- 学习记录管理：支持新增、编辑、删除、查看详情和列表筛选。
+- 统计概览：按日期聚合学习天数与时长，帮助观察学习习惯。
+- 账号系统：基于 Better Auth 的邮箱密码登录和会话管理。
+- 桌面端设计：参考 Stitch 设计稿，采用固定侧边栏、浅色学术风格和高密度表格布局。
+- 现代全栈：React + TanStack Router + Hono + tRPC + Drizzle + PostgreSQL。
 
-First, install the dependencies:
+## 技术栈
+
+| 层级 | 技术 |
+| --- | --- |
+| Web | React, Vite, TanStack Router, TanStack Query, Tailwind CSS, PWA, Tauri |
+| API | Hono, tRPC, Better Auth |
+| Database | PostgreSQL, Drizzle ORM, Drizzle Kit |
+| Monorepo | pnpm workspaces, Turborepo |
+| UI | Shared UI package, Base UI, shadcn-style primitives, lucide-react |
+
+## 快速开始
+
+### 1. 安装依赖
 
 ```bash
 pnpm install
 ```
 
-## Database Setup
+### 2. 准备环境变量
 
-This project uses PostgreSQL with Drizzle ORM.
+创建 `apps/server/.env`：
 
-1. Make sure you have a PostgreSQL database set up.
-2. Update your `apps/server/.env` file with your PostgreSQL connection details.
+```env
+DATABASE_URL=postgresql://postgres:password@localhost:5432/postgres
+BETTER_AUTH_SECRET=replace-with-at-least-32-chars-secret
+BETTER_AUTH_URL=http://localhost:3000
+CORS_ORIGIN=http://localhost:3001
+```
 
-3. Apply the schema to your database:
+创建 `apps/web/.env`：
+
+```env
+VITE_SERVER_URL=http://localhost:3000
+```
+
+### 3. 准备数据库
+
+项目使用 PostgreSQL。确认数据库已启动后，将 Drizzle schema 推送到数据库：
 
 ```bash
 pnpm run db:push
 ```
 
-Then, run the development server:
+如果需要本地测试账号：
+
+```bash
+pnpm --dir apps/server run db:seed
+```
+
+默认测试账号：
+
+```text
+Email: test@study-sys.local
+Password: Test12345!
+```
+
+### 4. 启动开发服务
+
+同时启动 Web 和 API：
 
 ```bash
 pnpm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser to see the web application.
-The API is running at [http://localhost:3000](http://localhost:3000).
-
-## UI Customization
-
-React web apps in this stack share shadcn/ui primitives through `packages/ui`.
-
-- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
-- Update shared primitives in `packages/ui/src/components/*`
-- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
-
-### Add more shared components
-
-Run this from the project root to add more primitives to the shared UI package:
+也可以分开启动：
 
 ```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
+pnpm run dev:server
+pnpm run dev:web
 ```
 
-Import shared components like this:
+默认访问地址：
 
-```tsx
-import { Button } from "@study-sys/ui/components/button";
-```
+| 服务 | 地址 |
+| --- | --- |
+| Web | http://localhost:3001 |
+| API | http://localhost:3000 |
 
-### Add app-specific blocks
+## 功能模块
 
-If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
+### 登录
 
-## Git Hooks and Formatting
+- 邮箱密码登录
+- 会话校验
+- 未登录用户自动跳转到 `/login`
 
-- Initialize hooks: `pnpm run prepare`
+### 仪表盘
 
-## Project Structure
+- 今日是否已记录
+- 累计学习天数
+- 累计学习时长
+- 本周学习时长
+- 最近学习记录
+- 学习热度和学习引言卡片
 
-```
+### 学习记录
+
+- `/records`：学习记录列表
+- `/records/new`：新增学习记录
+- `/records/:id`：记录详情
+- `/records/:id/edit`：编辑学习记录
+
+记录字段包括：
+
+- 学习日期
+- 学习主题
+- 学习分类
+- 学习时长
+- 学习内容
+- 学习收获
+- 遇到的问题
+- 下一步计划
+- 学习状态
+
+## 项目结构
+
+```text
 study-sys/
 ├── apps/
-│   ├── web/         # Frontend application (React + TanStack Router)
-│   └── server/      # Backend API (Hono, TRPC)
+│   ├── web/              # React 前端应用
+│   ├── server/           # Hono + tRPC API 服务
+│   └── fumadocs/         # 文档站预留应用
 ├── packages/
-│   ├── ui/          # Shared shadcn/ui components and styles
-│   ├── api/         # API layer / business logic
-│   ├── auth/        # Authentication configuration & logic
-│   └── db/          # Database schema & queries
+│   ├── api/              # tRPC router 与业务接口
+│   ├── auth/             # Better Auth 配置
+│   ├── db/               # Drizzle schema 与数据库连接
+│   ├── env/              # Web / Server 环境变量校验
+│   ├── ui/               # 共享 UI 组件
+│   └── config/           # 共享配置
+├── package.json
+└── README.md
 ```
 
-## Available Scripts
+## 常用命令
 
-- `pnpm run dev`: Start all applications in development mode
-- `pnpm run build`: Build all applications
-- `pnpm run dev:web`: Start only the web application
-- `pnpm run dev:server`: Start only the server
-- `pnpm run check-types`: Check TypeScript types across all apps
-- `pnpm run db:push`: Push schema changes to database
-- `pnpm run db:generate`: Generate database client/types
-- `pnpm run db:migrate`: Run database migrations
-- `pnpm run db:studio`: Open database studio UI
-- `cd apps/web && pnpm run generate-pwa-assets`: Generate PWA assets
-- `cd apps/web && pnpm run desktop:dev`: Start Tauri desktop app in development
-- `cd apps/web && pnpm run desktop:build`: Build Tauri desktop app
+| 命令 | 说明 |
+| --- | --- |
+| `pnpm run dev` | 启动所有开发服务 |
+| `pnpm run dev:web` | 只启动前端 |
+| `pnpm run dev:server` | 只启动 API |
+| `pnpm run build` | 构建所有应用 |
+| `pnpm run check-types` | 检查 TypeScript 类型 |
+| `pnpm run db:push` | 将 schema 同步到数据库 |
+| `pnpm run db:generate` | 生成 Drizzle migration |
+| `pnpm run db:migrate` | 执行 Drizzle migration |
+| `pnpm run db:studio` | 打开 Drizzle Studio |
+| `pnpm --dir apps/server run db:seed` | 创建本地测试账号 |
+| `pnpm --dir apps/web run desktop:dev` | 启动 Tauri 桌面端开发 |
+| `pnpm --dir apps/web run generate-pwa-assets` | 生成 PWA 图标资源 |
+
+## 数据库说明
+
+核心业务表是 `study_record`，与 Better Auth 的 `user` 表通过 `user_id` 关联。
+
+主要 schema 文件：
+
+- `packages/db/src/schema/auth.ts`
+- `packages/db/src/schema/study-record.ts`
+- `packages/db/src/schema/todo.ts`
+
+本地开发数据目录、环境变量和构建产物不会进入 Git：
+
+- `.local-pg/`
+- `.env`
+- `apps/web/dist/`
+- `apps/web/dev-dist/`
+- `node_modules/`
+
+## 开发备注
+
+- 前端通过 `VITE_SERVER_URL` 连接 API。
+- API 默认监听 `3000` 端口。
+- Web 默认由 Vite 分配端口；当前本地配置常用 `3001`。
+- 如果页面出现 `Failed to fetch`，优先确认 API 服务和 PostgreSQL 是否都已启动。
+
+## License
+
+Private project.

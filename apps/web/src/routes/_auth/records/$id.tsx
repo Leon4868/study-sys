@@ -16,13 +16,13 @@ import {
   CardTitle,
 } from "@study-sys/ui/components/card";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { STATUS_OPTIONS } from "@/components/study-record-form";
-import { trpc } from "@/utils/trpc";
+import { queryClient, trpc } from "@/utils/trpc";
 
 export const Route = createFileRoute("/_auth/records/$id")({
   component: RouteComponent,
@@ -50,6 +50,9 @@ function Field({ label, value }: { label: string; value: React.ReactNode }) {
 function RouteComponent() {
   const { id } = Route.useParams();
   const navigate = useNavigate();
+  const isEditing = useRouterState({
+    select: (state) => state.location.pathname === `/records/${id}/edit`,
+  });
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const recordQuery = useQuery(trpc.studyRecord.getById.queryOptions({ id }));
@@ -59,9 +62,15 @@ function RouteComponent() {
       onSuccess: () => {
         toast.success("删除成功");
         navigate({ to: "/records" });
+        queryClient.invalidateQueries({ queryKey: trpc.studyRecord.list.pathKey() });
+        queryClient.invalidateQueries({ queryKey: trpc.studyRecord.stats.pathKey() });
       },
     }),
   );
+
+  if (isEditing) {
+    return <Outlet />;
+  }
 
   if (recordQuery.isLoading) {
     return (

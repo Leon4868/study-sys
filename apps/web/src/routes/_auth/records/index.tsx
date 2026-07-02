@@ -20,7 +20,7 @@ import z from "zod";
 
 import { CATEGORY_OPTIONS, STATUS_OPTIONS } from "@/components/study-record-form";
 import { StudyRecordFilters } from "@/components/study-record-filters";
-import { trpc } from "@/utils/trpc";
+import { queryClient, trpc } from "@/utils/trpc";
 
 const recordsSearchSchema = z.object({
   dateFrom: z.string().optional(),
@@ -49,10 +49,18 @@ function RouteComponent() {
 
   const deleteMutation = useMutation(
     trpc.studyRecord.delete.mutationOptions({
-      onSuccess: () => {
+      onSuccess: async () => {
         toast.success("删除成功");
+        if (deleteTargetId) {
+          queryClient.removeQueries({
+            queryKey: trpc.studyRecord.getById.queryKey({ id: deleteTargetId }),
+          });
+        }
         setDeleteTargetId(null);
-        recordsQuery.refetch();
+        await Promise.all([
+          queryClient.invalidateQueries({ queryKey: trpc.studyRecord.list.pathKey() }),
+          queryClient.invalidateQueries({ queryKey: trpc.studyRecord.stats.pathKey() }),
+        ]);
       },
     }),
   );

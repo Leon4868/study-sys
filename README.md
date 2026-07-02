@@ -192,6 +192,12 @@ study-sys/
 - API 默认监听 `3000` 端口。
 - Web 默认由 Vite 分配端口；当前本地配置常用 `3001`。
 - 如果页面出现 `Failed to fetch`，优先确认 API 服务和 PostgreSQL 是否都已启动。
+- `/records/:id` 与 `/records/:id/edit` 是父子路由：父路由（`$id.tsx`）在编辑态下需渲染 `<Outlet />` 才能显示子路由的编辑表单，改动详情页时注意保留这段分流逻辑。
+
+## 项目状态
+
+- 全部 4 个 feature（登录、学习记录数据与 API、学习记录页面、首页仪表盘）共 25 个开发任务已完成，各包 `check-types` 全绿。
+- 全部联调测试任务已在可连接 PostgreSQL 的环境下用真实浏览器 + tRPC 请求验证通过（登录流程、学习记录 CRUD 接口与越权防护、学习记录页面全流程、首页统计展示）。详见 `specs/PLAN.md` 与 `specs/CHANGELOG-2026-07-02.md`。
 
 ## License
 

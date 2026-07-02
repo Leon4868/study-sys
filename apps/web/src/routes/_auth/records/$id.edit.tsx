@@ -11,7 +11,7 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { StudyRecordForm, type StudyRecordFormValues } from "@/components/study-record-form";
-import { trpc } from "@/utils/trpc";
+import { queryClient, trpc } from "@/utils/trpc";
 
 export const Route = createFileRoute("/_auth/records/$id/edit")({
   component: RouteComponent,
@@ -25,8 +25,13 @@ function RouteComponent() {
 
   const updateMutation = useMutation(
     trpc.studyRecord.update.mutationOptions({
-      onSuccess: (record) => {
+      onSuccess: async (record) => {
         toast.success("保存成功");
+        queryClient.setQueryData(trpc.studyRecord.getById.queryKey({ id: record.id }), record);
+        await Promise.all([
+          queryClient.invalidateQueries({ queryKey: trpc.studyRecord.list.pathKey() }),
+          queryClient.invalidateQueries({ queryKey: trpc.studyRecord.stats.pathKey() }),
+        ]);
         navigate({ to: "/records/$id", params: { id: record.id } });
       },
     }),

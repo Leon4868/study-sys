@@ -1,0 +1,525 @@
+{
+  "runAt": "2026-07-02T08:30:35.422Z",
+  "baseUrl": "http://localhost:3001",
+  "apiUrl": "http://localhost:3000",
+  "browser": "Google Chrome via Playwright executablePath",
+  "chromeExecutable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "chromeDevToolsMcp": "unavailable: agent.browsers.list() returned [] and extension backend was unavailable",
+  "uniqueTitle": "Codex自动化测试-1782981001547",
+  "steps": [
+    {
+      "name": "未登录访问 /dashboard 会跳转登录页",
+      "status": "passed",
+      "durationMs": 2088,
+      "data": {
+        "url": "http://localhost:3001/login",
+        "hasLoginTitle": true
+      }
+    },
+    {
+      "name": "测试账号登录成功并进入仪表盘",
+      "status": "passed",
+      "durationMs": 974,
+      "data": {
+        "url": "http://localhost:3001/dashboard",
+        "screenshot": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02/01-dashboard.png"
+      }
+    },
+    {
+      "name": "仪表盘关键模块可见",
+      "status": "passed",
+      "durationMs": 8,
+      "data": {
+        "visible": {
+          "新增学习记录": true,
+          "查看全部记录": true,
+          "最近记录": true,
+          "累计学习天数": true,
+          "总学习时长": true,
+          "本周学习时长": true
+        }
+      }
+    },
+    {
+      "name": "打开新增学习记录表单",
+      "status": "passed",
+      "durationMs": 192,
+      "data": {
+        "url": "http://localhost:3001/records/new",
+        "screenshot": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02/02-new-record-form.png"
+      }
+    },
+    {
+      "name": "提交新增学习记录",
+      "status": "passed",
+      "durationMs": 441,
+      "data": {
+        "url": "http://localhost:3001/records/0a950790-f2e7-4fbc-8703-7db65fe83aae",
+        "screenshot": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02/03-record-detail-created.png"
+      }
+    },
+    {
+      "name": "记录详情字段展示正确",
+      "status": "passed",
+      "durationMs": 8,
+      "data": {
+        "visible": {
+          "学习日期": true,
+          "学习分类": true,
+          "学习时长": true,
+          "学习状态": true,
+          "学习内容": true,
+          "学习收获": true
+        },
+        "recordUrl": "http://localhost:3001/records/0a950790-f2e7-4fbc-8703-7db65fe83aae"
+      }
+    },
+    {
+      "name": "编辑记录并保存",
+      "status": "failed",
+      "durationMs": 30164,
+      "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#title')\n\n    at /Users/zhizhidemac/Documents/AI/20260730/.node_repl_cell_9.mjs:115:33\n    at async step3 (/Users/zhizhidemac/Documents/AI/20260730/.node_repl_cell_9.mjs:43:16)\n    at async /Users/zhizhidemac/Documents/AI/20260730/.node_repl_cell_9.mjs:112:1",
+      "screenshot": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02/failed-07.png"
+    }
+  ],
+  "logs": {
+    "console": [
+      {
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 850,
+          "columnNumber": 8
+        }
+      },
+      {
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 954,
+          "columnNumber": 11
+        }
+      },
+      {
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d",
+          "lineNumber": 14335,
+          "columnNumber": 48
+        }
+      },
+      {
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:3001/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "type": "error",
+        "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at Header (http://localhost:3001/src/components/header.tsx:106:32)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:37:32)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 524,
+          "columnNumber": 3
+        }
+      },
+      {
+        "type": "error",
+        "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/dashboard.tsx?tsr-split=component:67:34)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 524,
+          "columnNumber": 3
+        }
+      },
+      {
+        "type": "error",
+        "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/dashboard.tsx?tsr-split=component:83:33)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 524,
+          "columnNumber": 3
+        }
+      },
+      {
+        "type": "error",
+        "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RecentRecordsList (http://localhost:3001/src/components/recent-records-list.tsx:57:30)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/dashboard.tsx?tsr-split=component:123:33)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 524,
+          "columnNumber": 3
+        }
+      },
+      {
+        "type": "error",
+        "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/dashboard.tsx?tsr-split=component:192:36)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 524,
+          "columnNumber": 3
+        }
+      },
+      {
+        "type": "error",
+        "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/$id.tsx?tsr-split=component:203:23)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 524,
+          "columnNumber": 3
+        }
+      },
+      {
+        "type": "error",
+        "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/$id.tsx?tsr-split=component:216:23)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+        "location": {
+          "url": "http://localhost:3001/@vite/client",
+          "lineNumber": 524,
+          "columnNumber": 3
+        }
+      }
+    ],
+    "pageErrors": [],
+    "requestFailed": [],
+    "badResponses": []
+  },
+  "reportDir": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02",
+  "continuation": {
+    "runAt": "2026-07-02T08:31:54.749Z",
+    "steps": [
+      {
+        "name": "重新登录",
+        "status": "passed",
+        "durationMs": 1749,
+        "data": {
+          "url": "http://localhost:3001/dashboard"
+        }
+      },
+      {
+        "name": "直接访问编辑页并加载表单",
+        "status": "failed",
+        "durationMs": 16055,
+        "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByText(/编辑学习记录|修改并保存学习记录/).first() to be visible\n\n    at /Users/zhizhidemac/Documents/AI/20260730/.node_repl_cell_10.mjs:65:53\n    at async step4 (/Users/zhizhidemac/Documents/AI/20260730/.node_repl_cell_10.mjs:50:77)\n    at async /Users/zhizhidemac/Documents/AI/20260730/.node_repl_cell_10.mjs:63:1",
+        "screenshot": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02/failed-cont-2.png"
+      }
+    ],
+    "logs": {
+      "console": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 850,
+            "columnNumber": 8
+          }
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 954,
+            "columnNumber": 11
+          }
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d",
+            "lineNumber": 14335,
+            "columnNumber": 48
+          }
+        },
+        {
+          "type": "verbose",
+          "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+          "location": {
+            "url": "http://localhost:3001/login",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at Header (http://localhost:3001/src/components/header.tsx:106:32)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:37:32)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 850,
+            "columnNumber": 8
+          }
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 954,
+            "columnNumber": 11
+          }
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d",
+            "lineNumber": 14335,
+            "columnNumber": 48
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at Header (http://localhost:3001/src/components/header.tsx:106:32)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:37:32)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/$id.tsx?tsr-split=component:203:23)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/$id.tsx?tsr-split=component:216:23)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        }
+      ],
+      "pageErrors": [],
+      "requestFailed": [
+        {
+          "url": "http://localhost:3001/src/components/study-stats-cards.tsx",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://localhost:3001/src/components/recent-records-list.tsx",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALhLIiP-Q-87KaAaH7rzeAODp22mF0qmF4CSjmPC6A0Rg5g1igg1w.119.woff2",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/sourceserif4/v14/vEFF2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6kDXr4Y3qwzQ.woff2",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALhLIiP-Q-87KaAaH7rzeAODp22mF0qmF4CSjmPC6A0Rg5g1igg1w.112.woff2",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  "cleanupAndMobile": {
+    "runAt": "2026-07-02T08:33:05.172Z",
+    "steps": [
+      {
+        "name": "登录后从详情页删除测试记录",
+        "status": "passed",
+        "durationMs": 6950,
+        "data": {
+          "url": "http://localhost:3001/records",
+          "screenshot": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02/10-record-deleted.png"
+        }
+      },
+      {
+        "name": "移动端登录页布局无横向溢出",
+        "status": "passed",
+        "durationMs": 1990,
+        "data": {
+          "metrics": {
+            "scrollWidth": 390,
+            "clientWidth": 390,
+            "height": 844
+          },
+          "screenshot": "/Users/zhizhidemac/Documents/AI/20260730/study-sys/test-results/codex-automation-2026-07-02/07-mobile-login.png"
+        }
+      }
+    ],
+    "logs": {
+      "console": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 850,
+            "columnNumber": 8
+          }
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 954,
+            "columnNumber": 11
+          }
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d",
+            "lineNumber": 14335,
+            "columnNumber": 48
+          }
+        },
+        {
+          "type": "verbose",
+          "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+          "location": {
+            "url": "http://localhost:3001/login",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at Header (http://localhost:3001/src/components/header.tsx:106:32)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:37:32)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 850,
+            "columnNumber": 8
+          }
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 954,
+            "columnNumber": 11
+          }
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d",
+            "lineNumber": 14335,
+            "columnNumber": 48
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at Header (http://localhost:3001/src/components/header.tsx:106:32)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:37:32)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/$id.tsx?tsr-split=component:203:23)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/$id.tsx?tsr-split=component:216:23)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/index.tsx?tsr-split=component:76:23)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at http://localhost:3001/src/routes/_auth/records/index.tsx?tsr-split=component:300:31\n    at Array.map (<anonymous>)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/index.tsx?tsr-split=component:234:39)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        },
+        {
+          "type": "error",
+          "text": "Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.\n    at Button (http://localhost:3001/@fs/Users/zhizhidemac/Documents/AI/20260730/study-sys/packages/ui/src/components/button.tsx:33:25)\n    at http://localhost:3001/src/routes/_auth/records/index.tsx?tsr-split=component:322:31\n    at Array.map (<anonymous>)\n    at RouteComponent (http://localhost:3001/src/routes/_auth/records/index.tsx?tsr-split=component:234:39)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at updateMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4948:16)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13274:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at AuthLayout (http://localhost:3001/src/routes/_auth/route.tsx?tsr-split=component:5:25)\n    at Lazy (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6120:23)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at OutletImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6450:63)\n    at RootComponent (http://localhost:3001/src/routes/__root.tsx:41:31)\n    at http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6373:63\n    at mountMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:4931:20)\n    at Object.useMemo (http://localhost:3001/node_modules/.vite/deps/react-dom_client.js?v=908a4b4d:13022:13)\n    at exports.useMemo (http://localhost:3001/node_modules/.vite/deps/react.js?v=908a4b4d:736:31)\n    at MatchInnerImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6371:27)\n    at MatchView (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6292:54)\n    at MatchImpl (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6236:52)\n    at MatchesInner (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6573:78)\n    at Matches (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6564:140)\n    at RouterProvider (http://localhost:3001/node_modules/.vite/deps/index.dev-Cou02qMm.js?v=908a4b4d:6741:56)",
+          "location": {
+            "url": "http://localhost:3001/@vite/client",
+            "lineNumber": 524,
+            "columnNumber": 3
+          }
+        }
+      ],
+      "pageErrors": [],
+      "requestFailed": [
+        {
+          "url": "http://localhost:3001/src/routes/_auth/dashboard.tsx?tsr-split=component",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALhLIiP-Q-87KaAaH7rzeAODp22mF0qmF4CSjmPC6A0Rg5g1igg1w.119.woff2",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/sourceserif4/v14/vEFF2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6kDXr4Y3qwzQ.woff2",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALhLIiP-Q-87KaAaH7rzeAODp22mF0qmF4CSjmPC6A0Rg5g1igg1w.112.woff2",
+          "method": "GET",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  }
+}

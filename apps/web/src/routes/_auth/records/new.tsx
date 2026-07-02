@@ -10,7 +10,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 
 import { StudyRecordForm, type StudyRecordFormValues } from "@/components/study-record-form";
-import { trpc } from "@/utils/trpc";
+import { queryClient, trpc } from "@/utils/trpc";
 
 export const Route = createFileRoute("/_auth/records/new")({
   component: RouteComponent,
@@ -21,8 +21,13 @@ function RouteComponent() {
 
   const createMutation = useMutation(
     trpc.studyRecord.create.mutationOptions({
-      onSuccess: (record) => {
+      onSuccess: async (record) => {
         toast.success("保存成功");
+        queryClient.setQueryData(trpc.studyRecord.getById.queryKey({ id: record.id }), record);
+        await Promise.all([
+          queryClient.invalidateQueries({ queryKey: trpc.studyRecord.list.pathKey() }),
+          queryClient.invalidateQueries({ queryKey: trpc.studyRecord.stats.pathKey() }),
+        ]);
         navigate({ to: "/records/$id", params: { id: record.id } });
       },
     }),

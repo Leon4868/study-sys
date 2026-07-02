@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: study-sys frontend on S3 static website hosting.
+
+Parameters:
+  AppName:
+    Type: String
+    Default: study-sys
+
+Resources:
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AppName}-web-${AWS::AccountId}-${AWS::Region}
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontendBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: PublicReadForStaticWebsite
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource: !Sub ${FrontendBucket.Arn}/*
+
+Outputs:
+  FrontendBucketName:
+    Value: !Ref FrontendBucket
+  SiteUrl:
+    Value: !Sub http://${FrontendBucket}.s3-website.${AWS::Region}.amazonaws.com

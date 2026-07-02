@@ -168,6 +168,32 @@ study-sys/
 | `pnpm --dir apps/web run desktop:dev` | 启动 Tauri 桌面端开发 |
 | `pnpm --dir apps/web run generate-pwa-assets` | 生成 PWA 图标资源 |
 
+## AWS 部署
+
+项目已提供可在 AWS 运行的部署配置：
+
+- 后端：Hono API 打包为 AWS Lambda，通过 API Gateway HTTP API 暴露服务。
+- 数据库：Amazon RDS PostgreSQL。
+- 前端：Vite 静态产物部署到 S3 Website。
+
+当前部署地址：
+
+| 服务 | 地址 |
+| --- | --- |
+| Web | http://study-sys-web-124971231397-us-east-2.s3-website.us-east-2.amazonaws.com |
+| API | https://46jpuo4jvf.execute-api.us-east-2.amazonaws.com |
+
+部署命令：
+
+```bash
+./scripts/deploy-aws-backend.sh
+./scripts/deploy-aws-frontend.sh
+```
+
+详细步骤、环境要求、数据库同步、测试账号初始化和清理命令见 `docs/aws-deployment.md`。
+
+部署脚本会在 `.aws-deploy/` 下保存本地部署输出和随机生成的密钥，该目录已加入 `.gitignore`，不要手动提交。
+
 ## 数据库说明
 
 核心业务表是 `study_record`，与 Better Auth 的 `user` 表通过 `user_id` 关联。
@@ -182,6 +208,7 @@ study-sys/
 
 - `.local-pg/`
 - `.env`
+- `.aws-deploy/`
 - `apps/web/dist/`
 - `apps/web/dev-dist/`
 - `node_modules/`

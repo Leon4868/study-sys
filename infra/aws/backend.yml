@@ -1,0 +1,193 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: study-sys backend on Lambda, HTTP API, and RDS PostgreSQL.
+
+Parameters:
+  AppName:
+    Type: String
+    Default: study-sys
+  CodeS3Bucket:
+    Type: String
+  CodeS3Key:
+    Type: String
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+  SubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+  AdminCidr:
+    Type: String
+    Description: CIDR allowed to connect to PostgreSQL for local drizzle db:push.
+    Default: 0.0.0.0/32
+  CorsOrigin:
+    Type: String
+    Description: Frontend origin allowed by CORS and Better Auth.
+    Default: http://localhost:3001
+  DbName:
+    Type: String
+    Default: studysys
+  DbUsername:
+    Type: String
+    Default: studysys_admin
+  DbPassword:
+    Type: String
+    NoEcho: true
+    MinLength: 16
+  BetterAuthSecret:
+    Type: String
+    NoEcho: true
+    MinLength: 32
+
+Resources:
+  LambdaSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Sub ${AppName} Lambda security group
+      VpcId: !Ref VpcId
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+
+  DatabaseSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Sub ${AppName} PostgreSQL security group
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          SourceSecurityGroupId: !Ref LambdaSecurityGroup
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: !Ref AdminCidr
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+
+  DatabaseSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: !Sub ${AppName} database subnets
+      SubnetIds: !Ref SubnetIds
+
+  Database:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Snapshot
+    UpdateReplacePolicy: Snapshot
+    Properties:
+      DBInstanceIdentifier: !Sub ${AppName}-postgres
+      DBName: !Ref DbName
+      Engine: postgres
+      DBInstanceClass: db.t4g.micro
+      AllocatedStorage: 20
+      StorageType: gp3
+      PubliclyAccessible: true
+      BackupRetentionPeriod: 1
+      MasterUsername: !Ref DbUsername
+      MasterUserPassword: !Ref DbPassword
+      DBSubnetGroupName: !Ref DatabaseSubnetGroup
+      VPCSecurityGroups:
+        - !Ref DatabaseSecurityGroup
+
+  ServerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
+
+  HttpApi:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: !Sub ${AppName}-api
+      ProtocolType: HTTP
+      CorsConfiguration:
+        AllowCredentials: true
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        AllowOrigins:
+          - !Ref CorsOrigin
+
+  ServerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${AppName}-server
+      Runtime: nodejs24.x
+      Handler: lambda.handler
+      Role: !GetAtt ServerRole.Arn
+      Code:
+        S3Bucket: !Ref CodeS3Bucket
+        S3Key: !Ref CodeS3Key
+      MemorySize: 512
+      Timeout: 30
+      Environment:
+        Variables:
+          NODE_ENV: production
+          DATABASE_URL: !Sub postgresql://${DbUsername}:${DbPassword}@${Database.Endpoint.Address}:${Database.Endpoint.Port}/${DbName}?sslmode=require&uselibpqcompat=true
+          BETTER_AUTH_SECRET: !Ref BetterAuthSecret
+          BETTER_AUTH_URL: !Sub https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com
+          CORS_ORIGIN: !Ref CorsOrigin
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref LambdaSecurityGroup
+        SubnetIds: !Ref SubnetIds
+
+  ServerIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref HttpApi
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !GetAtt ServerFunction.Arn
+      PayloadFormatVersion: "2.0"
+
+  RootRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref HttpApi
+      RouteKey: ANY /
+      Target: !Sub integrations/${ServerIntegration}
+
+  ProxyRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref HttpApi
+      RouteKey: ANY /{proxy+}
+      Target: !Sub integrations/${ServerIntegration}
+
+  DefaultStage:
+    Type: AWS::ApiGatewayV2::Stage
+    Properties:
+      ApiId: !Ref HttpApi
+      StageName: $default
+      AutoDeploy: true
+
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ServerFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*/*/*
+
+Outputs:
+  ApiUrl:
+    Value: !Sub https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com
+  DatabaseEndpoint:
+    Value: !GetAtt Database.Endpoint.Address
+  DatabasePort:
+    Value: !GetAtt Database.Endpoint.Port
+  DatabaseName:
+    Value: !Ref DbName
+  LambdaFunctionName:
+    Value: !Ref ServerFunction

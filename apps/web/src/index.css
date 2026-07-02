@@ -1,1 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Source+Serif+4:wght@600;700&display=swap");
 @import "@study-sys/ui/globals.css";
+
+:root {
+  --learn-surface: #f9f9ff;
+  --learn-surface-low: #f0f3ff;
+  --learn-surface-card: #ffffff;
+  --learn-surface-high: #d8e3fa;
+  --learn-primary: #002045;
+  --learn-primary-soft: #1a365d;
+  --learn-secondary: #1960a3;
+  --learn-secondary-container: #7db6ff;
+  --learn-outline: #c4c6cf;
+  --learn-muted: #43474e;
+}
+
+body {
+  font-family: "Noto Sans SC", Inter, system-ui, sans-serif;
+  background: var(--learn-surface);
+  color: #111c2c;
+}
+
+.font-study-heading {
+  font-family: "Source Serif 4", Georgia, serif;
+}
